@@ -106,3 +106,4 @@ function ProjectRow({ project }: { project: (typeof pinnedProjects)[number] }) {
       </div>
     </Link>
   );
+}
