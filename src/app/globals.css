@@ -9,17 +9,51 @@
 }
 
 html {
-  background: var(--bg);
+  background: transparent;
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: "Inter", system-ui, sans-serif;
   color: #f4f7ff;
-  background: radial-gradient(circle at 20% 20%, rgba(168, 141, 255, 0.08), transparent 35%),
-    radial-gradient(circle at 80% 0%, rgba(125, 208, 255, 0.08), transparent 30%),
-    var(--bg);
+  background: transparent;
   min-height: 100vh;
+  overflow-x: hidden;
+}
+
+#lights {
+  position: absolute;
+  inset: 0;
+}
+
+#lights canvas {
+  position: absolute;
+  inset: 0;
+  width: 100vw !important;
+  height: 100vh !important;
+}
+
+.marquee {
+  position: relative;
+  overflow: hidden;
+}
+
+.marquee-track {
+  display: flex;
+  gap: 40px;
+  width: max-content;
+  padding: 18px 32px;
+  animation: marquee 68s linear infinite;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 * {
@@ -69,8 +103,16 @@ a {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 20% 20%, rgba(168, 141, 255, 0.04), transparent 35%),
-    radial-gradient(circle at 80% 0%, rgba(125, 208, 255, 0.05), transparent 30%);
+  background: radial-gradient(
+      circle at 20% 20%,
+      rgba(168, 141, 255, 0.04),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 80% 0%,
+      rgba(125, 208, 255, 0.05),
+      transparent 30%
+    );
   opacity: 0.8;
   pointer-events: none;
 }

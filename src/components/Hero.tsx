@@ -1,79 +1,136 @@
+"use client";
+
 import Link from "next/link";
-import { ParallaxBackdrop } from "./ParallaxBackdrop";
+import {
+  SiHtml5,
+  SiCss3,
+  SiJavascript,
+  SiTypescript,
+  SiReact,
+  SiNextdotjs,
+  SiNodedotjs,
+  SiPython,
+  SiDjango,
+  SiFastapi,
+  SiCplusplus,
+  SiC,
+  SiDotnet,
+  SiGo,
+  SiRust,
+  SiPhp,
+  SiSymfony,
+  SiLaravel,
+  SiVuedotjs,
+  SiSvelte,
+  SiGnubash,
+  SiPostgresql,
+  SiMysql,
+  SiMongodb,
+  SiRedis,
+  SiApachespark,
+  SiApachekafka,
+  SiDocker,
+  SiKubernetes,
+  SiTerraform,
+  SiAwsamplify,
+  SiGooglecloud,
+  SiVercel,
+  SiTailwindcss,
+  SiFramer,
+  SiGraphql,
+  SiOpenapiinitiative,
+  SiGithubactions,
+  SiTestinglibrary,
+  SiWebpack
+} from "react-icons/si";
+import { IconType } from "react-icons";
+
+const techStack: { label: string; Icon: IconType; color?: string }[] = [
+  { label: "HTML", Icon: SiHtml5, color: "#e34f26" },
+  { label: "CSS", Icon: SiCss3, color: "#1572b6" },
+  { label: "JavaScript", Icon: SiJavascript, color: "#f7df1e" },
+  { label: "TypeScript", Icon: SiTypescript, color: "#3178c6" },
+  { label: "React", Icon: SiReact, color: "#61dafb" },
+  { label: "Next.js", Icon: SiNextdotjs, color: "#00dc82" },
+  { label: "Node.js", Icon: SiNodedotjs, color: "#68a063" },
+  { label: "Python", Icon: SiPython, color: "#3776ab" },
+  { label: "Django", Icon: SiDjango, color: "#0c4b33" },
+  { label: "FastAPI", Icon: SiFastapi, color: "#009688" },
+  { label: "C", Icon: SiC, color: "#a8b9cc" },
+  { label: "C++", Icon: SiCplusplus, color: "#00599c" },
+  { label: ".NET", Icon: SiDotnet, color: "#512bd4" },
+  { label: "Go", Icon: SiGo, color: "#00add8" },
+  { label: "Rust", Icon: SiRust, color: "#dea584" },
+  { label: "PHP", Icon: SiPhp, color: "#777bb3" },
+  { label: "Symfony", Icon: SiSymfony, color: "#a3b1c6" },
+  { label: "Laravel", Icon: SiLaravel, color: "#f9322c" },
+  { label: "Vue", Icon: SiVuedotjs, color: "#41b883" },
+  { label: "Svelte", Icon: SiSvelte, color: "#ff3e00" },
+  { label: "Bash", Icon: SiGnubash, color: "#3e474a" },
+  { label: "PostgreSQL", Icon: SiPostgresql, color: "#4169e1" },
+  { label: "MySQL", Icon: SiMysql, color: "#4479a1" },
+  { label: "MongoDB", Icon: SiMongodb, color: "#47a248" },
+  { label: "Redis", Icon: SiRedis, color: "#dc382d" },
+  { label: "Kafka", Icon: SiApachekafka, color: "#fca311" },
+  { label: "Spark", Icon: SiApachespark, color: "#e25a1c" },
+  { label: "Docker", Icon: SiDocker, color: "#2496ed" },
+  { label: "Kubernetes", Icon: SiKubernetes, color: "#326ce5" },
+  { label: "Terraform", Icon: SiTerraform, color: "#7b42bc" },
+  { label: "AWS", Icon: SiAwsamplify, color: "#ff9900" },
+  { label: "GCP", Icon: SiGooglecloud, color: "#4285f4" },
+  { label: "Vercel", Icon: SiVercel, color: "#e5e7eb" },
+  { label: "Tailwind", Icon: SiTailwindcss, color: "#38bdf8" },
+  { label: "Framer Motion", Icon: SiFramer, color: "#00c6ff" },
+  { label: "GraphQL", Icon: SiGraphql, color: "#e535ab" },
+  { label: "OpenAPI", Icon: SiOpenapiinitiative, color: "#6ba539" },
+  { label: "GitHub Actions", Icon: SiGithubactions, color: "#2088ff" },
+  { label: "Testing", Icon: SiTestinglibrary, color: "#e33332" },
+  { label: "Webpack", Icon: SiWebpack, color: "#8dd6f9" }
+];
 
 export function Hero() {
   return (
-    <ParallaxBackdrop>
-      <section className="relative overflow-hidden px-2 py-16 md:py-20">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(168,141,255,0.18),transparent_30%),radial-gradient(circle_at_80%_0%,rgba(125,208,255,0.16),transparent_28%)]" />
-        <div className="absolute left-0 right-0 top-0 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent" />
-        <div className="relative z-10 space-y-10 md:space-y-12">
-          <div className="space-y-4">
-            <p className="text-xs font-semibold uppercase tracking-[0.26em] text-white/60">Matéo Journiac · Ingénieur software / full stack</p>
-            <h1 className="text-3xl font-semibold leading-tight text-white sm:text-4xl lg:text-5xl">
-              Je design des expériences web immersives et j'orchestre des plateformes scalables pour les lancer vite, bien et en confiance.
-            </h1>
-            <p className="max-w-3xl text-lg text-white/70">
-              Produits premium, données en temps réel, CI/CD sans friction et observabilité native. J'opère à la croisée du design, du code et de l'ops pour que chaque release soit maîtrisée.
-            </p>
-          </div>
+    <section className="relative isolate min-h-screen w-full flex items-center overflow-hidden bg-transparent px-6 pt-16 pb-16 md:px-10 md:pt-20 md:pb-20">
 
-          <div className="grid gap-8 md:grid-cols-3 md:items-start">
-            <div className="space-y-3">
-              <p className="text-xs uppercase tracking-[0.18em] text-white/50">Focus</p>
-              <p className="text-lg font-semibold text-white">Produits web immersifs</p>
-              <p className="text-sm text-white/70">Narration soignée, interactions riches, performance perçue et accessibilité par défaut.</p>
-            </div>
-            <div className="space-y-3">
-              <p className="text-xs uppercase tracking-[0.18em] text-white/50">Plateforme</p>
-              <p className="text-lg font-semibold text-white">Stack moderne et observable</p>
-              <p className="text-sm text-white/70">Next.js App Router, TypeScript, edge functions, pipelines data, traces/logs corrélées.</p>
-            </div>
-            <div className="space-y-3">
-              <p className="text-xs uppercase tracking-[0.18em] text-white/50">Livraison</p>
-              <p className="text-lg font-semibold text-white">Release en confiance</p>
-              <p className="text-sm text-white/70">CI/CD GitHub Actions, canary/feature flags, tests E2E, SLO clairs.</p>
-            </div>
-          </div>
+      <div className="relative z-10 w-full space-y-6 md:space-y-8">
+        <div className="space-y-3">
+          <p className="text-xs font-semibold uppercase tracking-[0.26em] text-white/60">Matéo Journiac · Ingénieur software / full stack</p>
+          <h1 className="text-3xl font-semibold leading-tight text-white sm:text-4xl lg:text-5xl">
+            Je design des expériences web immersives et j'orchestre des plateformes scalables.
+          </h1>
+          <p className="max-w-2xl text-base text-white/70 sm:text-lg">
+            Produits premium, données en temps réel et CI/CD sans friction. Je combine design, code et ops pour livrer vite et en confiance.
+          </p>
+        </div>
 
-          <div className="flex flex-wrap gap-3 text-sm font-semibold">
-            <Link
-              href="/projets"
-              className="rounded-full bg-white px-5 py-2.5 text-black transition hover:scale-[1.01]"
-            >
-              Voir les projets
-            </Link>
-            <Link
-              href="/plateformes"
-              className="rounded-full border border-white/20 px-5 py-2.5 text-white/80 transition hover:border-white/40 hover:text-white"
-            >
-              Découvrir mes plateformes
-            </Link>
-            <Link
-              href="/contact"
-              className="rounded-full border border-white/10 px-5 py-2.5 text-white/80 transition hover:border-white/30 hover:text-white"
-            >
-              Planifier un échange
-            </Link>
-          </div>
+        <div className="flex flex-wrap gap-3 text-sm font-semibold">
+          <Link href="/projets" className="rounded-full bg-white px-5 py-2.5 text-black transition hover:scale-[1.01]">
+            Voir mes projets
+          </Link>
+          <Link
+            href="/plateformes"
+            className="rounded-full border border-white/20 px-5 py-2.5 text-white/80 transition hover:border-white/40 hover:text-white"
+          >
+            Voir mes services
+          </Link>
+        </div>
 
-          <div className="grid gap-6 border-t border-white/10 pt-6 md:grid-cols-4">
-            <Metric label="Livraisons produits" value="40+" />
-            <Metric label="Temps réel" value="<120ms P95" />
-            <Metric label="Disponibilité" value=">99.9%" />
-            <Metric label="Terrains" value="B2B SaaS · Data · IA" />
+        <div className="relative mt-8 overflow-hidden">
+          <div className="marquee">
+            <div className="marquee-track">
+              {[...techStack, ...techStack].map(({ label, Icon, color }, idx) => (
+                <span
+                  key={`${label}-${idx}`}
+                  className="flex items-center gap-4 whitespace-nowrap text-lg font-semibold text-white"
+                >
+                  <Icon aria-hidden className="h-7 w-7" style={{ color }} />
+                  {label}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
-      </section>
-    </ParallaxBackdrop>
-  );
-}
-
-function Metric({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="space-y-2">
-      <p className="text-xs uppercase tracking-[0.16em] text-white/50">{label}</p>
-      <p className="text-lg font-semibold text-white">{value}</p>
-    </div>
+      </div>
+    </section>
   );
 }

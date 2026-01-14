@@ -2,28 +2,40 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const links = [
   { href: "/", label: "Accueil" },
   { href: "/projets", label: "Projets" },
-  { href: "/plateformes", label: "Mes plateformes" },
-  { href: "/contact", label: "Contact" }
+  { href: "/plateformes", label: "Mes Services" }
 ];
 
 export function Navbar() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => {
+      setScrolled(window.scrollY > 4);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
-    <header className="sticky top-0 z-50">
-      <div className="relative mx-auto flex max-w-6xl items-center justify-between gap-8 px-4 py-5 text-sm font-semibold text-white/80 md:justify-center">
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 w-full transition ${scrolled ? "bg-black/65 backdrop-blur-md shadow-lg shadow-black/40" : "bg-transparent"}`}
+    >
+      <div className="relative mx-auto flex max-w-6xl h-16 items-center justify-between gap-6 px-4 text-sm font-semibold text-white/80">
         <Link
-          href="/"
-          className="text-sm font-semibold text-white md:absolute md:left-4 md:text-xs md:uppercase md:tracking-[0.24em] md:text-white/60 md:hover:text-white"
+          href="/profil"
+          className="text-sm font-semibold text-white md:text-xs md:uppercase md:tracking-[0.24em] md:text-white/70 md:hover:text-white"
         >
           Matéo Journiac
         </Link>
+
         <nav className="hidden items-center gap-8 md:flex">
           {links.map((link) => {
             const active = pathname === link.href;
@@ -39,6 +51,16 @@ export function Navbar() {
             );
           })}
         </nav>
+
+        <div className="hidden items-center md:flex">
+          <Link
+            href="/contact"
+            className="rounded-full border border-white/30 px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-white transition hover:border-white hover:bg-white/10"
+          >
+            Me contacter
+          </Link>
+        </div>
+
         <button
           className="md:hidden rounded-lg border border-white/10 p-2 text-white/80"
           onClick={() => setOpen((v) => !v)}
@@ -51,7 +73,7 @@ export function Navbar() {
         </button>
       </div>
       {open ? (
-        <div className="md:hidden border-t border-white/10 bg-black/80">
+        <div className="md:hidden border-t border-white/10 bg-black/90">
           <div className="mx-auto flex max-w-6xl flex-col px-4 py-3 text-sm font-medium text-white/80">
             {links.map((link) => {
               const active = pathname === link.href;
@@ -66,6 +88,13 @@ export function Navbar() {
                 </Link>
               );
             })}
+            <Link
+              href="/contact"
+              className="mt-2 rounded-full border border-white/30 px-3 py-2 text-center font-semibold text-white hover:border-white hover:bg-white/10"
+              onClick={() => setOpen(false)}
+            >
+              Me contacter
+            </Link>
           </div>
         </div>
       ) : null}
