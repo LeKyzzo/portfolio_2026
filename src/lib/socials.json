@@ -1,0 +1,26 @@
+[
+  {
+    "name": "GitHub",
+    "handle": "mateojourniac",
+    "url": "https://github.com/LeKyzzo",
+    "type": "code"
+  },
+  {
+    "name": "LinkedIn",
+    "handle": "mateo-journiac",
+    "url": "https://www.linkedin.com/in/mateo-journiac/",
+    "type": "professional"
+  },
+  {
+    "name": "Twitter",
+    "handle": "@mateoj",
+    "url": "https://twitter.com/mateoj",
+    "type": "social"
+  },
+  {
+    "name": "Email",
+    "handle": "journiacmateo.pro@gmail.com",
+    "url": "mailto:journiacmateo.pro@gmail.com",
+    "type": "contact"
+  }
+]

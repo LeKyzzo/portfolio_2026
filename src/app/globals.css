@@ -92,6 +92,190 @@ a {
   transition: transform 0.4s ease;
 }
 
+/* Scroll mouse animation (converted from provided SCSS) */
+:root {
+  --sm-bg: rgba(0, 0, 0, 0.35);
+  --sm-outline: rgba(255, 255, 255, 0.12);
+  --sm-outline-fade: rgba(255, 255, 255, 0.04);
+  --sm-width: 52px;
+  --sm-height: 88px;
+  --sm-border: 6px;
+  --sm-track: 10px;
+  --sm-posTrack: 20px;
+  --sm-shrink: 0.4;
+  --sm-duration: 5s;
+}
+
+.mouse {
+  width: var(--sm-width);
+  height: var(--sm-height);
+  border-radius: 100px;
+  /* subtle outline gradient, inner area is transparent black via ::before */
+  background-image: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.06) 0%,
+    rgba(255, 255, 255, 0.04) 49%,
+    rgba(255, 255, 255, 0.08) 50%,
+    rgba(255, 255, 255, 0.06) 100%
+  );
+  background-size: 100% 200%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: sm-colorSlide var(--sm-duration) linear infinite,
+    sm-nudgeMouse var(--sm-duration) ease-out infinite;
+}
+.mouse::before {
+  content: "";
+  width: calc(var(--sm-width) - var(--sm-border));
+  height: calc(var(--sm-height) - var(--sm-border));
+  background: var(--sm-bg);
+  border-radius: 100px;
+  position: absolute;
+}
+.mouse-shell {
+  position: relative;
+}
+.mouse-trackball {
+  width: var(--sm-track);
+  height: var(--sm-track);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.95);
+  position: relative;
+  z-index: 10;
+  animation: sm-trackBallSlide var(--sm-duration) linear infinite;
+}
+.scroll-text {
+  margin-top: 12px;
+  animation: sm-colorText var(--sm-duration) ease-out infinite,
+    sm-nudgeText var(--sm-duration) ease-out infinite;
+}
+
+@keyframes sm-colorSlide {
+  0% {
+    background-position: 0% 100%;
+  }
+  20% {
+    background-position: 0% 0%;
+  }
+  30% {
+    background-position: 0% 100%;
+  }
+  50% {
+    background-position: 0% 0%;
+  }
+  60% {
+    background-position: 0% 100%;
+  }
+  80% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
+
+@keyframes sm-trackBallSlide {
+  0% {
+    opacity: 1;
+    transform: translateY(calc(-1 * var(--sm-posTrack))) scale(1);
+  }
+  14% {
+    opacity: 0;
+    transform: translateY(calc(var(--sm-posTrack) * 2)) scale(var(--sm-shrink));
+  }
+  30% {
+    opacity: 1;
+    transform: translateY(calc(-1 * var(--sm-posTrack))) scale(1);
+  }
+  44% {
+    opacity: 0;
+    transform: translateY(calc(var(--sm-posTrack) * 2)) scale(var(--sm-shrink));
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(calc(-1 * var(--sm-posTrack))) scale(1);
+  }
+  74% {
+    opacity: 0;
+    transform: translateY(calc(var(--sm-posTrack) * 2)) scale(var(--sm-shrink));
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(calc(-1 * var(--sm-posTrack))) scale(1);
+  }
+}
+
+@keyframes sm-nudgeMouse {
+  0% {
+    transform: translateY(0);
+  }
+  20% {
+    transform: translateY(8px);
+  }
+  30% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(8px);
+  }
+  60% {
+    transform: translateY(0);
+  }
+  80% {
+    transform: translateY(8px);
+  }
+  90% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes sm-nudgeText {
+  0% {
+    transform: translateY(0);
+  }
+  20% {
+    transform: translateY(2px);
+  }
+  30% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(2px);
+  }
+  60% {
+    transform: translateY(0);
+  }
+  80% {
+    transform: translateY(2px);
+  }
+  90% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes sm-colorText {
+  21% {
+    color: var(--sm-outline-fade);
+  }
+  30% {
+    color: var(--sm-outline);
+  }
+  51% {
+    color: var(--sm-outline-fade);
+  }
+  60% {
+    color: var(--sm-outline);
+  }
+  81% {
+    color: var(--sm-outline-fade);
+  }
+  90% {
+    color: var(--sm-outline);
+  }
+}
+
 .section-shell {
   position: relative;
   overflow: hidden;

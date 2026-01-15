@@ -44,6 +44,7 @@ import {
   SiWebpack
 } from "react-icons/si";
 import { IconType } from "react-icons";
+import ScrollMouse from "./ScrollMouse";
 
 const techStack: { label: string; Icon: IconType; color?: string }[] = [
   { label: "HTML", Icon: SiHtml5, color: "#e34f26" },
@@ -131,6 +132,7 @@ export function Hero() {
           </div>
         </div>
       </div>
+      <ScrollMouse position="hero" />
     </section>
   );
 }

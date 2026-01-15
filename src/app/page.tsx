@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ContactCta } from "@/components/ContactCta";
 import { Hero } from "@/components/Hero";
 import { RepoAccordion } from "@/components/RepoAccordion";
+import ScrollMouse from "@/components/ScrollMouse";
 
 const GITHUB_USER = process.env.GITHUB_USER ?? "mateojourniac";
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;

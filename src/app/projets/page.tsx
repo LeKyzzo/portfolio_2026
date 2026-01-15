@@ -1,5 +1,6 @@
 import { ContactCta } from "@/components/ContactCta";
 import RepoCard from "@/components/RepoCard";
+import ScrollMouse from "@/components/ScrollMouse";
 
 export const metadata = {
   title: "Projets · Portfolio"
@@ -32,7 +33,7 @@ export default async function ProjectsPage() {
 
   return (
     <div className="space-y-0">
-      <section className="flex min-h-screen w-full items-center bg-transparent">
+      <section className="relative flex min-h-screen w-full items-center bg-transparent">
         <div className="mx-auto flex max-w-6xl flex-col gap-4 px-6 pt-16 pb-16 md:px-10 md:pt-20 md:pb-20">
           <div className="flex items-center gap-4">
             <svg width="40" height="40" viewBox="0 0 24 24" fill="none" aria-hidden>
@@ -45,6 +46,7 @@ export default async function ProjectsPage() {
             </div>
           </div>
         </div>
+        <ScrollMouse position="hero" />
       </section>
 
       <main className="w-full bg-black/85 py-10 md:py-12">
