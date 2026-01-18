@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ContactCta } from "@/components/ContactCta";
 import { Hero } from "@/components/Hero";
-import { RepoAccordion } from "@/components/RepoAccordion";
+import RepoCard from "@/components/RepoCard";
 import ScrollMouse from "@/components/ScrollMouse";
 
 const GITHUB_USER = process.env.GITHUB_USER ?? "mateojourniac";
@@ -66,15 +66,15 @@ export default async function HomePage() {
               Voir tous les projets →
             </Link>
           </div>
-          <div className="divide-y divide-white/10">
-            {top.length === 0 ? (
-              <div className="text-sm text-white/70">Aucun projet phare disponible — ajoute ton `GITHUB_TOKEN` si nécessaire.</div>
-            ) : (
-              top.map(({ repo, contributions }) => (
-                <RepoAccordion key={repo.id} repo={repo} contributions={contributions} />
-              ))
-            )}
-          </div>
+          {top.length === 0 ? (
+            <div className="text-sm text-white/70">Aucun projet phare disponible — ajoute ton `GITHUB_TOKEN` si nécessaire.</div>
+          ) : (
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-2 items-stretch">
+              {top.map(({ repo, contributions }) => (
+                <RepoCard key={repo.id} repo={repo} />
+              ))}
+            </div>
+          )}
 
           <div className="grid gap-8 md:grid-cols-[1.1fr,0.9fr] md:items-start">
             <div className="space-y-4">
