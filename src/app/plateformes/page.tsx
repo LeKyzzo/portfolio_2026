@@ -27,13 +27,13 @@ export default async function PlateformesPage() {
 			<section className="relative flex min-h-screen w-full items-center bg-transparent">
 				<div className="mx-auto flex max-w-6xl flex-col gap-4 px-6 pt-16 pb-16 md:px-10 md:pt-20 md:pb-20">
 					<p className="text-xs uppercase tracking-[0.18em] text-white/50">Plateformes</p>
-					<h1 className="text-3xl font-semibold text-white">Mes Services produits</h1>
+					<h1 className="text-3xl font-semibold text-white">Mes Services</h1>
 					<p className="max-w-3xl text-sm text-white/70">
 						Services automobile, créations de site internet, WebApp ou autres logiciels, et art automobiles, découvres mes plateformes sur-mesure :
 					</p>
 					<div className="flex flex-wrap gap-3 text-sm text-white/70">
 						<Link href="/contact" className="font-semibold text-primary hover:text-white">
-							Parler d'une intégration →
+							Vous avez une question ? →
 						</Link>
 					</div>
 				</div>
