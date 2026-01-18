@@ -4,18 +4,24 @@ export default function ServiceCard({ service }: { service: any }) {
   return (
     <div className="group relative flex h-full flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-4">
       <div className="flex gap-4">
-        <div className="w-28 h-20 flex-shrink-0 overflow-hidden rounded-lg bg-black/20">
+        <div className="w-12 h-12 flex-shrink-0 overflow-hidden rounded-md bg-black/20 flex items-center justify-center">
           {service.image ? (
             // eslint-disable-next-line @next/next/no-img-element
-            <img src={service.image} alt={service.title} className="h-full w-full object-cover" />
+            <img
+              src={service.image}
+              alt={service.title}
+              width={32}
+              height={32}
+              className="max-h-full max-w-full object-contain"
+            />
           ) : (
-            <div className="h-full w-full bg-white/5" />
+            <div className="h-8 w-8 bg-white/5" />
           )}
         </div>
 
         <div className="flex-1">
           <h3 className="text-lg font-semibold text-white">{service.title}</h3>
-          <p className="mt-2 text-sm text-white/70">{service.short}</p>
+          <p className="mt-2 text-sm text-white/70">{service.description ?? service.short}</p>
         </div>
       </div>
 

@@ -1,41 +1,10 @@
 [
   {
-    "slug": "studio-prototypage",
-    "title": "Studio de prototypage",
-    "short": "Prototypage rapide d'expériences web et validation utilisateur.",
-    "image": "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=800&q=60",
-    "link": "https://launchpad.example.com",
-    "details": [
-      "Design d'interaction et UI haute fidélité",
-      "Prototype interactif (Framer/React) prêt pour tests utilisateurs",
-      "MVP technique avec intégration API et mise en production"
-    ],
-    "contact_cta": "Parlons prototype"
+    "slug": "totaz-1",
+    "link": "https://www.totaz.fr"
   },
   {
-    "slug": "observabilite",
-    "title": "Console d'observabilité",
-    "short": "Instrumentation, traces et dashboards pour équipes produit.",
-    "image": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=60",
-    "link": "https://ops-console.example.com",
-    "details": [
-      "Traces distribuées (OTel)",
-      "Métriques et alerting (Prometheus/Grafana)",
-      "Logs structurés et corrélation avec incidents"
-    ],
-    "contact_cta": "Déployer observabilité"
-  },
-  {
-    "slug": "plateforme-realtime",
-    "title": "Plateforme temps réel",
-    "short": "Concevoir et opérer pipelines temps réel et systèmes d'events.",
-    "image": "https://images.unsplash.com/photo-1545239351-1141bd82e8a6?auto=format&fit=crop&w=800&q=60",
-    "link": "https://realtime-lab.example.com",
-    "details": [
-      "Architecture event-driven (Kafka, Redis Streams)",
-      "Scalabilité et consommation backpressure",
-      "Monitoring et stratégies de reprise/graceful degradation"
-    ],
-    "contact_cta": "Explorer la plateforme"
+    "slug": "totaz-2",
+    "link": "https://www.totaz.fr"
   }
 ]
