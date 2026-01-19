@@ -6,7 +6,12 @@ import ScrollMouse from "@/components/ScrollMouse";
 import { fetchMeta } from "@/lib/fetchMeta";
 
 export const metadata = {
-	title: "Mes Services · Portfolio"
+	title: "Mes Services · Matéo Journiac",
+	description:
+		"Mes plateformes et services : sites, webapps et solutions sur-mesure pour product teams et entreprises.",
+	openGraph: {
+		images: ["/og-image.svg"]
+	}
 };
 
 export default async function PlateformesPage() {

@@ -1,7 +1,13 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export const metadata = {
-  title: "Profil · Matéo Journiac"
+  title: "Profil · Matéo Journiac",
+  description:
+    "Profil de Matéo Journiac — ingénieur full stack spécialisé en interfaces immersives, APIs et plateformes. Disponible pour missions front, full stack et plateforme.",
+  openGraph: {
+    images: ["/images/mateo_cartoon.png"]
+  }
 };
 
 const stats = [
@@ -45,8 +51,15 @@ export default function ProfilPage() {
     <div className="space-y-0">
       <section className="flex min-h-screen w-full items-center bg-transparent">
         <div className="mx-auto flex max-w-6xl flex-col gap-6 px-6 pt-16 pb-16 md:px-10 md:pt-20 md:pb-20">
-          <p className="text-xs uppercase tracking-[0.18em] text-white/60">Profil</p>
-          <h1 className="text-3xl font-semibold text-white">Matéo Journiac</h1>
+          <div className="flex items-center gap-6">
+            <div className="relative h-28 w-28 overflow-hidden rounded-full border border-white/10">
+              <Image src="/images/mateo_cartoon.png" alt="Matéo Journiac" fill className="object-cover" priority />
+            </div>
+            <div>
+              <p className="text-xs uppercase tracking-[0.18em] text-white/60">Profil</p>
+              <h1 className="text-3xl font-semibold text-white">Matéo Journiac</h1>
+            </div>
+          </div>
           <p className="max-w-3xl text-sm text-white/70">
             Ingénieur full stack orienté produit. Je conçois des expériences web immersives, des APIs robustes et j'opère l'infra pour livrer vite et en confiance.
           </p>

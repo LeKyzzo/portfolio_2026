@@ -3,7 +3,11 @@ import RepoCard from "@/components/RepoCard";
 import ScrollMouse from "@/components/ScrollMouse";
 
 export const metadata = {
-  title: "Projets · Portfolio"
+  title: "Projets · Matéo Journiac",
+  description: "Liste des projets GitHub et réalisations de Matéo Journiac — code, démos et exemples techniques.",
+  openGraph: {
+    images: ["/images/project-placeholder.svg"]
+  }
 };
 
 const GITHUB_USER = process.env.GITHUB_USER ?? "mateojourniac";

@@ -4,6 +4,14 @@ import { Hero } from "@/components/Hero";
 import RepoCard from "@/components/RepoCard";
 import ScrollMouse from "@/components/ScrollMouse";
 
+export const metadata = {
+  title: "Accueil · Matéo Journiac",
+  description: "Accueil — portfolio de Matéo Journiac, ingénieur full stack : projets, services et contact.",
+  openGraph: {
+    images: ["/og-image.svg"]
+  }
+};
+
 const GITHUB_USER = process.env.GITHUB_USER ?? "mateojourniac";
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 

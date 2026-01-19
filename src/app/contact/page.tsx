@@ -4,7 +4,11 @@ import ContactFormClient from "@/components/ContactFormClient";
 import socials from "@/lib/socials.json";
 
 export const metadata = {
-  title: "Contact · Portfolio"
+  title: "Contact · Matéo Journiac",
+  description: "Contactez Matéo Journiac pour missions front, full stack ou plateforme — réponse sous 24h.",
+  openGraph: {
+    images: ["/og-image.svg"]
+  }
 };
 
 export default function ContactPage() {
