@@ -1,50 +1,16 @@
 import Link from "next/link";
 import Image from "next/image";
+import profile from "@/lib/profile.json";
 
 export const metadata = {
-  title: "Profil · Matéo Journiac",
-  description:
-    "Profil de Matéo Journiac — ingénieur full stack spécialisé en interfaces immersives, APIs et plateformes. Disponible pour missions front, full stack et plateforme.",
-  openGraph: {
-    images: ["/images/mateo_cartoon.png"]
-  }
+  title: profile.title,
+  description: profile.description,
+  openGraph: { images: [profile.image] }
 };
 
-const stats = [
-  { label: "Années d'expérience", value: "6+" },
-  { label: "Projets livrés", value: "40+" },
-  { label: "Stacks opérées", value: "Front, Back, Ops" }
-];
-
-const highlights = [
-  {
-    title: "Design systems & UX motion",
-    detail: "Systèmes cohérents, micro-interactions et accessibilité par défaut."
-  },
-  {
-    title: "APIs et data temps réel",
-    detail: "GraphQL/REST, events streaming, observabilité corrélée (logs/metrics/traces)."
-  },
-  {
-    title: "CI/CD et fiabilité",
-    detail: "Pipelines, feature flags, canary, rollback prêt, alerting avec SLO/SLA."
-  }
-];
-
-const timeline = [
-  {
-    title: "Lead full stack · Produits data",
-    detail: "Architecture, orchestrations temps réel, dashboards et intégrations partenaires."
-  },
-  {
-    title: "Senior front · Expériences immersives",
-    detail: "Next.js, animations, design systems, perf perçue, analytics produit."
-  },
-  {
-    title: "Ops · Observabilité & plateforme",
-    detail: "GitHub Actions, Docker/K8s, traces distribuées, budgets de perf, sécurité."
-  }
-];
+const stats = profile.stats;
+const highlights = profile.highlights;
+const timeline = profile.timeline;
 
 export default function ProfilPage() {
   return (
@@ -52,17 +18,15 @@ export default function ProfilPage() {
       <section className="flex min-h-screen w-full items-center bg-transparent">
         <div className="mx-auto flex max-w-6xl flex-col gap-6 px-6 pt-16 pb-16 md:px-10 md:pt-20 md:pb-20">
           <div className="flex items-center gap-6">
-            <div className="relative h-28 w-28 overflow-hidden rounded-full border border-white/10">
-              <Image src="/images/mateo_cartoon.png" alt="Matéo Journiac" fill className="object-cover" priority />
+            <div className="relative h-28 w-28 overflow-hidden rounded-full">
+              <Image src={profile.image} alt={profile.name} fill className="object-cover" priority />
             </div>
             <div>
               <p className="text-xs uppercase tracking-[0.18em] text-white/60">Profil</p>
-              <h1 className="text-3xl font-semibold text-white">Matéo Journiac</h1>
+              <h1 className="text-3xl font-semibold text-white">{profile.name}</h1>
             </div>
           </div>
-          <p className="max-w-3xl text-sm text-white/70">
-            Ingénieur full stack orienté produit. Je conçois des expériences web immersives, des APIs robustes et j'opère l'infra pour livrer vite et en confiance.
-          </p>
+          <p className="max-w-3xl text-sm text-white/70">{profile.description}</p>
           <div className="flex flex-wrap gap-3 text-sm text-white/70">
             <Link href="/projets" className="rounded-full bg-white px-4 py-2 text-black font-semibold">Voir mes projets</Link>
             <Link href="/contact" className="rounded-full border border-white/20 px-4 py-2 text-white/80 hover:text-white">Me contacter</Link>
@@ -118,8 +82,8 @@ export default function ProfilPage() {
                 <p className="text-xs uppercase tracking-[0.18em] text-white/50">Collaboration</p>
                 <p className="text-sm text-white/70">Disponible pour missions front, full stack ou plateforme.</p>
               </div>
-              <Link href="/contact" className="rounded-full bg-gradient-to-r from-primary to-accent px-4 py-2 text-sm font-semibold text-black">
-                Discuter d'un projet
+              <Link href={profile.cta.href} className="rounded-full bg-gradient-to-r from-primary to-accent px-4 py-2 text-sm font-semibold text-black">
+                {profile.cta.text}
               </Link>
             </div>
           </div>

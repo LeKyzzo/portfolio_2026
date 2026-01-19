@@ -1,0 +1,40 @@
+{
+  "name": "Matéo Journiac",
+  "title": "Profil · Matéo Journiac",
+  "description": "Profil de Matéo Journiac — ingénieur full stack spécialisé en interfaces immersives, APIs et plateformes. Disponible pour missions front, full stack et plateforme.",
+  "image": "/images/mateo_cartoon.png",
+  "stats": [
+    { "label": "Années d'expérience", "value": "6+" },
+    { "label": "Projets livrés", "value": "40+" },
+    { "label": "Stacks opérées", "value": "Front, Back, Ops" }
+  ],
+  "highlights": [
+    {
+      "title": "Design systems & UX motion",
+      "detail": "Conception de design systems modulaires, micro-interactions et animations pour une expérience utilisateur fluide et accessible."
+    },
+    {
+      "title": "APIs et data temps réel",
+      "detail": "Conception d'APIs performantes (REST/GraphQL) et pipelines temps réel pour ingestion, processing et streaming de données."
+    },
+    {
+      "title": "CI/CD et fiabilité",
+      "detail": "Mise en place de CI/CD robustes, feature flags, déploiements canary, monitoring et alerting pour garantir fiabilité et réversibilité."
+    }
+  ],
+  "timeline": [
+    {
+      "title": "Développeur Full-Stack · Applications & Plateformes",
+      "detail": "Conception et développement d'applications et plateformes scalables, intégration partenaires et tableaux de bord opérationnels."
+    },
+    {
+      "title": "Développeur Full-Stack · Expériences immersives",
+      "detail": "Création d'interfaces interactives et performantes avec Next.js, animations et instrumentation produit pour mesurer l'impact UX."
+    },
+    {
+      "title": "Développeur Logiciels · Logiciels de maintenance",
+      "detail": "Automatisation, conteneurisation et pratiques DevOps pour fiabilité, observabilité et sécurité des logiciels de maintenance."
+    }
+  ],
+  "cta": { "text": "Discuter d'un projet", "href": "/contact" }
+}

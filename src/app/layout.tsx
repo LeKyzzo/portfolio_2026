@@ -63,13 +63,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
   return (
     <html lang="fr" className={`${spaceGrotesk.variable} ${inter.variable}`} suppressHydrationWarning>
-      <head>
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="shortcut icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" href="/favicon.ico" />
-        <meta name="theme-color" content="#0b0b0b" />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd }} />
-      </head>
       <body className="bg-surface text-white antialiased">
         <BackgroundHyperspeed />
         <div
