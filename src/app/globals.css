@@ -41,10 +41,10 @@ body {
 
 .marquee-track {
   display: flex;
-  gap: 40px;
+  gap: 48px;
   width: max-content;
-  padding: 18px 32px;
-  animation: marquee 68s linear infinite;
+  padding: 16px 24px;
+  animation: marquee 80s linear infinite;
 }
 
 @keyframes marquee {
@@ -75,7 +75,9 @@ a {
   inset: -1px;
   padding: 1px;
   background: linear-gradient(120deg, #7dd0ff, #a68dff, #7dd0ff);
-  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
   mask-composite: exclude;
   pointer-events: none;
   opacity: 0.6;
@@ -123,7 +125,8 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  animation: sm-colorSlide var(--sm-duration) linear infinite,
+  animation:
+    sm-colorSlide var(--sm-duration) linear infinite,
     sm-nudgeMouse var(--sm-duration) ease-out infinite;
 }
 .mouse::before {
@@ -148,7 +151,8 @@ a {
 }
 .scroll-text {
   margin-top: 12px;
-  animation: sm-colorText var(--sm-duration) ease-out infinite,
+  animation:
+    sm-colorText var(--sm-duration) ease-out infinite,
     sm-nudgeText var(--sm-duration) ease-out infinite;
 }
 
@@ -287,7 +291,8 @@ a {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(
+  background:
+    radial-gradient(
       circle at 20% 20%,
       rgba(168, 141, 255, 0.04),
       transparent 35%

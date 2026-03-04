@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import {
   SiHtml5,
   SiCss3,
@@ -45,6 +46,11 @@ import {
 } from "react-icons/si";
 import { IconType } from "react-icons";
 import ScrollMouse from "./ScrollMouse";
+
+const BackgroundHyperspeed = dynamic(
+  () => import("./BackgroundHyperspeed").then((m) => ({ default: m.BackgroundHyperspeed })),
+  { ssr: false }
+);
 
 const techStack: { label: string; Icon: IconType; color?: string }[] = [
   { label: "HTML", Icon: SiHtml5, color: "#e34f26" },
@@ -93,38 +99,97 @@ export function Hero() {
   return (
     <section className="relative isolate min-h-screen w-full flex items-center overflow-hidden bg-transparent px-6 pt-16 pb-16 md:px-10 md:pt-20 md:pb-20">
 
-      <div className="relative z-10 w-full space-y-6 md:space-y-8">
-        <div className="space-y-3">
-          <p className="text-xs font-semibold uppercase tracking-[0.26em] text-white/60">Matéo Journiac · Ingénieur software / full stack</p>
-          <h1 className="text-3xl font-semibold leading-tight text-white sm:text-4xl lg:text-5xl">
-            Je design des expériences web immersives et j'orchestre des plateformes scalables.
+      {/* Fond Three.js uniquement sur ce composant, chargé de façon différée */}
+      <BackgroundHyperspeed />
+
+      {/* Halo doux derrière le contenu pour améliorer la lisibilité */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(ellipse 80% 60% at 50% 50%, rgba(5,6,11,0.65) 0%, rgba(5,6,11,0.2) 55%, transparent 100%)"
+        }}
+      />
+
+      <div className="relative z-10 w-full space-y-8 md:space-y-10">
+        {/* Badge disponibilité */}
+        <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3.5 py-1.5 text-xs font-semibold text-emerald-300">
+          <span className="relative flex h-2 w-2">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
+          </span>
+          Disponible pour de nouveaux projets
+        </div>
+
+        <div className="space-y-4">
+          <p className="text-xs font-semibold uppercase tracking-[0.26em] text-white/50">
+            Matéo Journiac · Ingénieur software full stack
+          </p>
+          <h1 className="text-3xl font-semibold leading-tight text-white sm:text-4xl lg:text-[3.4rem] lg:leading-[1.12]">
+            Je design des expériences web{" "}
+            <span
+              style={{
+                backgroundImage: "linear-gradient(90deg, #7dd0ff 0%, #a68dff 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text"
+              }}
+            >
+              immersives
+            </span>{" "}
+            et j'orchestre des plateformes{" "}
+            <span
+              style={{
+                backgroundImage: "linear-gradient(90deg, #a68dff 0%, #7dd0ff 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text"
+              }}
+            >
+              scalables.
+            </span>
           </h1>
-          <p className="max-w-2xl text-base text-white/70 sm:text-lg">
+          <p className="max-w-xl text-base text-white/65 sm:text-lg">
             Produits premium, données en temps réel et CI/CD sans friction. Je combine design, code et ops pour livrer vite et en confiance.
           </p>
         </div>
 
         <div className="flex flex-wrap gap-3 text-sm font-semibold">
-          <Link href="/projets" className="rounded-full bg-white px-5 py-2.5 text-black transition hover:scale-[1.01]">
+          <Link
+            href="/projets"
+            className="rounded-full bg-gradient-to-r from-primary to-accent px-6 py-2.5 text-[#05060b] shadow-[0_0_24px_rgba(125,208,255,0.35)] transition hover:shadow-[0_0_36px_rgba(125,208,255,0.5)] hover:scale-[1.02]"
+          >
             Voir mes projets
           </Link>
           <Link
             href="/plateformes"
-            className="rounded-full border border-white/20 px-5 py-2.5 text-white/80 transition hover:border-white/40 hover:text-white"
+            className="rounded-full border border-white/20 bg-white/5 px-6 py-2.5 text-white/80 backdrop-blur-sm transition hover:border-white/40 hover:bg-white/10 hover:text-white"
           >
-            Voir mes services
+            Mes services
           </Link>
         </div>
 
         <div className="relative mt-8 overflow-hidden">
+          {/* Fondu sur les bords du carrousel */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16"
+            style={{ background: "linear-gradient(to right, #05060b, transparent)" }}
+          />
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16"
+            style={{ background: "linear-gradient(to left, #05060b, transparent)" }}
+          />
           <div className="marquee">
             <div className="marquee-track">
               {[...techStack, ...techStack].map(({ label, Icon, color }, idx) => (
                 <span
                   key={`${label}-${idx}`}
-                  className="flex items-center gap-4 whitespace-nowrap text-lg font-semibold text-white"
+                  className="flex items-center gap-3 whitespace-nowrap text-sm font-medium text-white/60"
                 >
-                  <Icon aria-hidden className="h-7 w-7" style={{ color }} />
+                  <Icon aria-hidden className="h-5 w-5 flex-shrink-0" style={{ color }} />
                   {label}
                 </span>
               ))}

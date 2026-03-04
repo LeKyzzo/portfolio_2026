@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Space_Grotesk, Inter } from "next/font/google";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import { BackgroundHyperspeed } from "@/components/BackgroundHyperspeed";
 import "./globals.css";
 import socials from "@/lib/socials.json";
 
@@ -64,14 +63,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="fr" className={`${spaceGrotesk.variable} ${inter.variable}`} suppressHydrationWarning>
       <body className="bg-surface text-white antialiased">
-        <BackgroundHyperspeed />
-        <div
-          className="pointer-events-none fixed inset-0 z-0"
-          style={{
-            background:
-              "linear-gradient(to bottom, transparent 0%, transparent 38vh, transparent 60vh, #05060b 100vh, #0b0c11 140vh, #0f1117 200vh)"
-          }}
-        />
+        {/* Fond CSS statique — aucun JS, fondu radial chaud */}
+        <div aria-hidden className="pointer-events-none fixed inset-0 -z-10 bg-[#05060b]">
+          <div className="absolute left-[-10%] top-[-8%] h-[55vh] w-[55vw] rounded-full bg-[#7dd0ff]/[0.045] blur-[110px]" />
+          <div className="absolute right-[-8%] top-[10%] h-[45vh] w-[45vw] rounded-full bg-[#a68dff]/[0.04] blur-[100px]" />
+          <div className="absolute bottom-[-5%] left-[20%] h-[35vh] w-[50vw] rounded-full bg-[#7dd0ff]/[0.025] blur-[90px]" />
+        </div>
         <div className="relative z-10 min-h-screen">
           <Navbar />
           <main className="flex w-full flex-col gap-0 px-0 pt-0 pb-0">{children}</main>

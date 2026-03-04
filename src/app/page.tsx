@@ -3,6 +3,7 @@ import { ContactCta } from "@/components/ContactCta";
 import { Hero } from "@/components/Hero";
 import RepoCard from "@/components/RepoCard";
 import ScrollMouse from "@/components/ScrollMouse";
+import { TrustedBy } from "@/components/TrustedBy";
 
 export const metadata = {
   title: "Accueil · Matéo Journiac",
@@ -62,84 +63,94 @@ export default async function HomePage() {
     <div className="space-y-0">
       <Hero />
 
-      <section className="w-full bg-black/85 py-10 md:py-12">
-        <div className="mx-auto flex max-w-6xl flex-col gap-10 px-6 md:px-10">
-          <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 pb-4">
-            <div>
-              <p className="text-xs uppercase tracking-[0.18em] text-white/50">Sélection</p>
-              <h2 className="text-2xl font-semibold text-white">Projets phares</h2>
-              <p className="text-sm text-white/70">Architecture solide, UX premium, delivery rapide.</p>
+      {/* Ils nous ont fait confiance */}
+      <TrustedBy />
+
+      {/* Section principale */}
+      <section className="w-full py-16 md:py-20">
+        <div className="mx-auto flex max-w-6xl flex-col gap-16 px-6 md:px-10">
+
+          {/* Projets phares */}
+          <div className="flex flex-col gap-8">
+            <div className="flex flex-wrap items-end justify-between gap-3">
+              <div className="space-y-1">
+                <p className="text-[11px] uppercase tracking-[0.22em] text-primary/80">Sélection GitHub</p>
+                <h2 className="text-2xl font-semibold text-white">Projets phares</h2>
+                <p className="text-sm text-white/60">Architecture solide, UX premium, delivery rapide.</p>
+              </div>
+              <Link href="/projets" className="group text-sm font-semibold text-white/60 transition hover:text-primary">
+                Voir tous les projets <span className="inline-block transition group-hover:translate-x-1">→</span>
+              </Link>
             </div>
-            <Link href="/projets" className="text-sm font-semibold text-primary hover:text-white">
-              Voir tous les projets →
-            </Link>
-          </div>
-          {top.length === 0 ? (
-            <div className="text-sm text-white/70">Aucun projet phare disponible — ajoute ton `GITHUB_TOKEN` si nécessaire.</div>
-          ) : (
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-2 items-stretch">
+            {top.length === 0 ? (
+              <div className="rounded-2xl border border-white/8 bg-white/[0.03] px-6 py-8 text-sm text-white/50">
+                Aucun projet disponible — ajoute ton <code className="text-primary">GITHUB_TOKEN</code> si nécessaire.
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 gap-5 md:grid-cols-2 items-stretch">
               {top.map(({ repo, contributions }) => (
                 <RepoCard key={repo.id} repo={repo} />
               ))}
             </div>
           )}
+          </div>
 
-          <div className="grid gap-8 md:grid-cols-[1.1fr,0.9fr] md:items-start">
-            <div className="space-y-4">
-              <p className="text-xs uppercase tracking-[0.18em] text-white/50">Approche</p>
-              <h2 className="text-2xl font-semibold text-white">Ingénierie full stack orientée produit</h2>
-              <p className="text-sm text-white/70">
-                Storytelling d'interface, performance perçue, instrumentation dès le jour 1. Chaque feature est pensée pour être mesurable, déployable et réversible.
-              </p>
-              <ul className="space-y-3 text-sm text-white/70">
-                <li className="flex items-start gap-2">
-                  <span className="mt-1 h-1.5 w-1.5 rounded-full bg-primary" />
-                  <span>Design systems et animations subtiles pour une expérience cohérente.</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="mt-1 h-1.5 w-1.5 rounded-full bg-primary" />
-                  <span>APIs fiables, tests contractuels, observabilité corrélée (logs, métriques, traces).</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="mt-1 h-1.5 w-1.5 rounded-full bg-primary" />
-                  <span>Delivery cadence : feature flags, canary, rollback prêt, dashboards temps réel.</span>
-                </li>
-              </ul>
-            </div>
-            <div className="space-y-3 border-t border-white/10 pt-4 md:border-none md:pt-0">
-              <p className="text-xs uppercase tracking-[0.18em] text-white/50">Stack quotidienne</p>
-              <div className="grid gap-4 text-sm text-white/70 sm:grid-cols-2">
-                <div className="space-y-2">
-                  <p className="text-white font-semibold">Frontend</p>
-                  <p className="text-sm text-white/70">Next.js App Router, TypeScript, Tailwind, Framer Motion, design systems.</p>
+          {/* Approche */}
+          <div className="rounded-2xl border border-white/8 bg-white/[0.025] p-8 md:p-10">
+            <div className="grid gap-10 md:grid-cols-[1.15fr,0.85fr] md:items-start">
+              <div className="space-y-5">
+                <div>
+                  <p className="text-[11px] uppercase tracking-[0.22em] text-primary/80">Approche</p>
+                  <h2 className="mt-1 text-2xl font-semibold text-white">Ingénierie full stack orientée produit</h2>
                 </div>
-                <div className="space-y-2">
-                  <p className="text-white font-semibold">Backend & Data</p>
-                  <p>Node.js, edge functions, PostgreSQL, Turso, Kafka, ClickHouse.</p>
-                </div>
-                <div className="space-y-2">
-                  <p className="text-white font-semibold">Ops & Qualité</p>
-                  <p>GitHub Actions, Docker, Vercel, Kubernetes, tests E2E, observabilité OTel/Grafana.</p>
-                </div>
-                <div className="space-y-2">
-                  <p className="text-white font-semibold">Livraison</p>
-                  <p>Feature flags, canary, SLO/SLA, alerting, rétro de release automatisée.</p>
+                <p className="text-sm text-white/60 leading-relaxed">
+                  Storytelling d'interface, performance perçue, instrumentation dès le jour 1. Chaque feature est pensée pour être mesurable, déployable et réversible.
+                </p>
+                <ul className="space-y-2.5">
+                  {[
+                    "Design systems et animations subtiles pour une expérience cohérente.",
+                    "APIs fiables, tests contractuels, observabilité corrélée (logs, métriques, traces).",
+                    "Delivery cadence : feature flags, canary, rollback prêt, dashboards temps réel."
+                  ].map((item) => (
+                    <li key={item} className="flex items-start gap-2.5 text-sm text-white/60">
+                      <span className="mt-[6px] h-1.5 w-1.5 flex-shrink-0 rounded-full bg-primary/70" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="space-y-4 border-t border-white/8 pt-6 md:border-l md:border-t-0 md:pl-8 md:pt-0">
+                <p className="text-[11px] uppercase tracking-[0.22em] text-white/40">Stack quotidienne</p>
+                <div className="grid gap-4 text-sm sm:grid-cols-2">
+                  {[
+                    { title: "Frontend", desc: "Next.js, TypeScript, Tailwind, Framer Motion." },
+                    { title: "Backend & Data", desc: "Node.js, PostgreSQL, Kafka, ClickHouse." },
+                    { title: "Ops & Qualité", desc: "Docker, Kubernetes, GitHub Actions, OTel/Grafana." },
+                    { title: "Livraison", desc: "Feature flags, canary, SLO/SLA, alerting auto." }
+                  ].map(({ title, desc }) => (
+                    <div key={title} className="space-y-1">
+                      <p className="font-semibold text-white/90">{title}</p>
+                      <p className="text-white/50">{desc}</p>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="space-y-4 border-t border-white/10 pt-6">
-            <p className="text-xs uppercase tracking-[0.18em] text-white/50">Plateformes</p>
-            <div className="flex flex-wrap items-center gap-3 text-sm text-white/70">
-              <span>J'opère plusieurs plateformes produits pour explorer, lancer et scaler des business.</span>
-              <Link href="/plateformes" className="font-semibold text-primary hover:text-white">
-                Voir les plateformes →
-              </Link>
+          {/* Plateformes */}
+          <div className="flex flex-wrap items-center justify-between gap-4 rounded-xl border border-white/8 bg-white/[0.02] px-6 py-5">
+            <div>
+              <p className="text-[11px] uppercase tracking-[0.22em] text-accent/80">Plateformes</p>
+              <p className="mt-0.5 text-sm text-white/60">J'opère plusieurs plateformes produits pour explorer, lancer et scaler des business.</p>
             </div>
+            <Link href="/plateformes" className="group text-sm font-semibold text-accent/80 transition hover:text-accent">
+              Voir les plateformes <span className="inline-block transition group-hover:translate-x-1">→</span>
+            </Link>
           </div>
 
-          <div className="pt-2">
+          {/* CTA Contact */}
+          <div>
             <ContactCta />
           </div>
         </div>

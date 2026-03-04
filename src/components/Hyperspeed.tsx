@@ -911,7 +911,7 @@ class App {
       alpha: true
     });
     this.renderer.setSize(container.offsetWidth, container.offsetHeight, false);
-    this.renderer.setPixelRatio(window.devicePixelRatio);
+    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1));
 
     this.composer = new EffectComposer(this.renderer);
     container.appendChild(this.renderer.domElement);
@@ -987,16 +987,16 @@ class App {
     this.bloomPass = new EffectPass(
       this.camera,
       new BloomEffect({
-        luminanceThreshold: 0.2,
-        luminanceSmoothing: 0,
-        resolutionScale: 1
+        luminanceThreshold: 0.25,
+        luminanceSmoothing: 0.1,
+        resolutionScale: 0.5
       })
     );
 
     const smaaPass = new EffectPass(
       this.camera,
       new SMAAEffect({
-        preset: SMAAPreset.MEDIUM
+        preset: SMAAPreset.LOW
       })
     );
     this.renderPass.renderToScreen = false;
@@ -1208,15 +1208,15 @@ export const hyperspeedPresets: Record<string, HyperspeedOptions> = {
   highway: {
     ...defaultOptions,
     distortion: "LongRaceDistortion",
-    length: 520,
+    length: 380,
     roadWidth: 12,
     islandWidth: 1,
     lanesPerRoad: 3,
     fov: 90,
     fovSpeedUp: 135,
     speedUp: 2.4,
-    totalSideLightSticks: 48,
-    lightPairsPerRoadWay: 52,
+    totalSideLightSticks: 24,
+    lightPairsPerRoadWay: 26,
     carShiftX: [-0.25, 0.25],
     carFloorSeparation: [0.4, 1.4],
     carWidthPercentage: [0.28, 0.46],
