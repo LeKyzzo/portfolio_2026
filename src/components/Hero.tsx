@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import dynamic from "next/dynamic";
 import {
   SiHtml5,
   SiCss3,
@@ -46,11 +45,11 @@ import {
 } from "react-icons/si";
 import { IconType } from "react-icons";
 import ScrollMouse from "./ScrollMouse";
+import { BackgroundPaths } from "@/components/ui/background-paths";
 
-const BackgroundHyperspeed = dynamic(
-  () => import("./BackgroundHyperspeed").then((m) => ({ default: m.BackgroundHyperspeed })),
-  { ssr: false }
-);
+export function DemoBackgroundPaths() {
+  return <BackgroundPaths title="Background Paths" />;
+}
 
 const techStack: { label: string; Icon: IconType; color?: string }[] = [
   { label: "HTML", Icon: SiHtml5, color: "#e34f26" },
@@ -99,8 +98,9 @@ export function Hero() {
   return (
     <section className="relative isolate min-h-screen w-full flex items-center overflow-hidden bg-transparent px-6 pt-16 pb-16 md:px-10 md:pt-20 md:pb-20">
 
-      {/* Fond Three.js uniquement sur ce composant, chargé de façon différée */}
-      <BackgroundHyperspeed />
+      <div aria-hidden className="pointer-events-none absolute inset-0 opacity-70">
+        <DemoBackgroundPaths />
+      </div>
 
       {/* Halo doux derrière le contenu pour améliorer la lisibilité */}
       <div
