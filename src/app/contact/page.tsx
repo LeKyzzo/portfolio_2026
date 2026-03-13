@@ -51,6 +51,19 @@ export default function ContactPage() {
           </aside>
 
           <div className="text-left">
+            <div className="mb-6">
+              <p className="text-sm">
+                <a
+                  href="https://dev.mateojourniac.com"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="text-primary font-semibold hover:underline"
+                >
+                  vous voulez un site/app ? Cliques ici
+                </a>
+              </p>
+            </div>
+
             <ContactFormClient email={contactEmail ? contactEmail.handle : "contact@votre-domaine.com"} />
           </div>
         </div>
