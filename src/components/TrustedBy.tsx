@@ -150,6 +150,18 @@ export function TrustedBy() {
             ))}
         </div>
 
+        {/* Bouton d'action */}
+        <div className="mt-8 flex justify-center">
+          <a
+            href="https://dev.mateojourniac.com"
+            target="_blank"
+            rel="noreferrer noopener"
+            className="rounded-full bg-white px-6 py-2 text-sm font-semibold text-black shadow-sm transition-colors hover:bg-white/90"
+          >
+            Je veux un site
+          </a>
+        </div>
+
         {/* Dots de navigation */}
         {pageCount > 1 && (
           <div className="mt-8 flex justify-center gap-2">
