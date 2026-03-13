@@ -3,6 +3,7 @@ export type ReusableElement = {
   title: string;
   category: string;
   description: string;
+  usage: string[];
   docsLabel: string;
   docsHref: string;
   snippet: string;
@@ -14,7 +15,13 @@ export const reusableElements: ReusableElement[] = [
     title: "Footer live (script)",
     category: "Widget",
     description:
-      "Footer réutilisable sur n'importe quel site via un script externe. Toute mise à jour ici est propagée après redeploy.",
+      "Footer réutilisable sur n'importe quel site via un script externe.",
+    usage: [
+      "Colle le script juste avant </body> sur ton site.",
+      "Ajuste la couleur d'accent avec data-color.",
+      "Ajuste le fond du footer avec data-background.",
+      "Définis ta redirection avec data-href.",
+    ],
     docsLabel: "Voir mes prestations",
     docsHref: "https://mateojourniac.com",
     snippet:
