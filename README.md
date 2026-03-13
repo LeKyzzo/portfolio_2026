@@ -35,3 +35,34 @@ npm run dev
 
 - Déploiement recommandé : Vercel (`npm run build` puis push).
 - Activez les checks `npm run lint` dans votre CI.
+
+## Widget Footer live (réutilisable)
+
+Le widget est exposé sur la route suivante :
+
+- `/widget/footer.js`
+
+Exemple d'intégration dans n'importe quel site :
+
+```html
+<script
+	src="https://votre-domaine.com/widget/footer.js"
+	data-color="#7dd0ff"
+	data-href="https://mateojourniac.com"
+	data-author="Matéo Journiac"
+	data-cta="Voir mes prestations"
+	data-text="Site réalisé par"
+	data-theme="dark"
+></script>
+```
+
+Attributs disponibles :
+
+- `data-color` : couleur d'accent
+- `data-href` : URL de redirection
+- `data-author` : nom affiché
+- `data-cta` : texte du lien
+- `data-text` : texte de préfixe
+- `data-theme` : `dark` ou `light`
+
+Si vous mettez à jour ce repo puis redéployez, tous les sites qui chargent ce script récupèrent automatiquement la nouvelle version.
