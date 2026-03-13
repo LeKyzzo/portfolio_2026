@@ -19,8 +19,8 @@ const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 async function fetchReposWithContribs() {
   const isAuth = Boolean(GITHUB_TOKEN);
   const url = isAuth
-    ? `https://api.github.com/user/repos?per_page=100&visibility=all&affiliation=owner,collaborator&sort=updated`
-    : `https://api.github.com/users/${GITHUB_USER}/repos?per_page=100&type=owner&sort=updated`;
+    ? `https://api.github.com/user/repos?per_page=30&visibility=all&affiliation=owner,collaborator&sort=updated`
+    : `https://api.github.com/users/${GITHUB_USER}/repos?per_page=30&type=owner&sort=updated`;
 
   const res = await fetch(url, {
     headers: GITHUB_TOKEN ? { Authorization: `token ${GITHUB_TOKEN}` } : undefined,
@@ -29,30 +29,15 @@ async function fetchReposWithContribs() {
   if (!res.ok) return [];
   const repos = await res.json();
 
-  // fetch contributors counts in parallel (for commit counts by user)
-  const withContribs = await Promise.all(
-    (repos as any[]).map(async (r) => {
-      try {
-        const fullName = r.full_name || `${GITHUB_USER}/${r.name}`;
-        const contribUrl = `https://api.github.com/repos/${fullName}/contributors?per_page=100`;
-        const cRes = await fetch(contribUrl, {
-          headers: GITHUB_TOKEN ? { Authorization: `token ${GITHUB_TOKEN}` } : undefined,
-          next: { revalidate: 3600 }
-        });
-        if (!cRes.ok) return { repo: r, contributions: 0 };
-        const contribs = await cRes.json();
-        const me = Array.isArray(contribs) ? contribs.find((c: any) => c.login === GITHUB_USER) : null;
-        return { repo: r, contributions: me ? me.contributions : 0 };
-      } catch (e) {
-        return { repo: r, contributions: 0 };
-      }
-    })
-  );
+  if (!Array.isArray(repos)) return [];
 
-  // sort by contributions desc and take top 4
-  return withContribs
-    .filter((x) => x.repo)
-    .sort((a, b) => b.contributions - a.contributions)
+  return repos
+    .filter((repo: any) => repo && !repo.fork && !repo.archived)
+    .sort((a: any, b: any) => {
+      const stars = (b?.stargazers_count ?? 0) - (a?.stargazers_count ?? 0);
+      if (stars !== 0) return stars;
+      return new Date(b?.pushed_at ?? 0).getTime() - new Date(a?.pushed_at ?? 0).getTime();
+    })
     .slice(0, 4);
 }
 
@@ -88,10 +73,10 @@ export default async function HomePage() {
               </div>
             ) : (
               <div className="grid grid-cols-1 gap-5 md:grid-cols-2 items-stretch">
-              {top.map(({ repo, contributions }) => (
-                <RepoCard key={repo.id} repo={repo} />
-              ))}
-            </div>
+                {top.map((repo: any) => (
+                  <RepoCard key={repo.id} repo={repo} />
+                ))}
+              </div>
           )}
           </div>
 

@@ -962,6 +962,7 @@ class App {
     this.tick = this.tick.bind(this);
     this.init = this.init.bind(this);
     this.setSize = this.setSize.bind(this);
+    this.onWindowResize = this.onWindowResize.bind(this);
     this.onMouseDown = this.onMouseDown.bind(this);
     this.onMouseUp = this.onMouseUp.bind(this);
 
@@ -969,7 +970,7 @@ class App {
     this.onTouchEnd = this.onTouchEnd.bind(this);
     this.onContextMenu = this.onContextMenu.bind(this);
 
-    window.addEventListener("resize", this.onWindowResize.bind(this));
+    window.addEventListener("resize", this.onWindowResize);
   }
 
   onWindowResize() {
@@ -1146,7 +1147,7 @@ class App {
       this.scene.clear();
     }
 
-    window.removeEventListener("resize", this.onWindowResize.bind(this));
+    window.removeEventListener("resize", this.onWindowResize);
     if (this.container) {
       this.container.removeEventListener("mousedown", this.onMouseDown);
       this.container.removeEventListener("mouseup", this.onMouseUp);
@@ -1156,6 +1157,9 @@ class App {
       this.container.removeEventListener("touchend", this.onTouchEnd);
       this.container.removeEventListener("touchcancel", this.onTouchEnd);
       this.container.removeEventListener("contextmenu", this.onContextMenu);
+    }
+    if (this.renderer?.domElement?.parentElement) {
+      this.renderer.domElement.parentElement.removeChild(this.renderer.domElement);
     }
   }
 
@@ -1241,18 +1245,16 @@ const Hyperspeed: FC<HyperspeedProps> = ({ effectOptions = {} }) => {
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    if (appRef.current) {
-      appRef.current.dispose();
-      const container = document.getElementById("lights");
-      if (container) {
-        while (container.firstChild) {
-          container.removeChild(container.firstChild);
-        }
-      }
-    }
-
     const container = hyperspeed.current;
     if (!container) return;
+
+    if (appRef.current) {
+      appRef.current.dispose();
+      appRef.current = null;
+    }
+    while (container.firstChild) {
+      container.removeChild(container.firstChild);
+    }
 
     const options = { ...mergedOptions } as HyperspeedOptions;
     if (typeof options.distortion === "string") {
@@ -1261,11 +1263,18 @@ const Hyperspeed: FC<HyperspeedProps> = ({ effectOptions = {} }) => {
 
     const myApp = new App(container, options);
     appRef.current = myApp;
-    myApp.loadAssets().then(myApp.init);
+    let cancelled = false;
+    myApp.loadAssets().then(() => {
+      if (!cancelled && appRef.current === myApp) {
+        myApp.init();
+      }
+    });
 
     return () => {
-      if (appRef.current) {
+      cancelled = true;
+      if (appRef.current === myApp) {
         appRef.current.dispose();
+        appRef.current = null;
       }
     };
   }, [mergedOptions]);

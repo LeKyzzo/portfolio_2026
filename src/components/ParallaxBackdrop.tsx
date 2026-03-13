@@ -6,14 +6,24 @@ export function ParallaxBackdrop({ children }: { children: ReactNode }) {
   const [offset, setOffset] = useState(0);
 
   useEffect(() => {
+    let rafId: number | null = null;
+
     const handleScroll = () => {
-      const y = window.scrollY;
-      setOffset(Math.min(y * 0.12, 160));
+      if (rafId !== null) return;
+      rafId = window.requestAnimationFrame(() => {
+        rafId = null;
+        const y = window.scrollY;
+        const next = Math.min(y * 0.12, 160);
+        setOffset((prev) => (Math.abs(prev - next) < 0.5 ? prev : next));
+      });
     };
 
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (rafId !== null) window.cancelAnimationFrame(rafId);
+    };
   }, []);
 
   return (
