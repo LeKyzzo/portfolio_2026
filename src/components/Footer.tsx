@@ -10,6 +10,9 @@ export function Footer() {
           <div className="space-y-1">
             <p className="text-sm font-semibold text-white">Matéo Journiac · Ingénieur Full Stack</p>
             <p className="text-xs text-white/60">Paris · Remote · Produits & plateformes.</p>
+            <Link href="/reutilisables" className="inline-block pt-1 text-xs font-semibold text-primary/90 transition hover:text-white">
+              Éléments réutilisables →
+            </Link>
           </div>
           <div className="flex flex-wrap gap-4 text-sm text-white/80">
             {socials.map((s) => (

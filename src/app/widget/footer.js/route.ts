@@ -15,6 +15,7 @@ const widgetScript = `(() => {
   const ctaLabel = script.getAttribute("data-cta") || "Voir mes prestations";
   const text = script.getAttribute("data-text") || "Site réalisé par";
   const theme = script.getAttribute("data-theme") || "dark";
+  const customBackground = script.getAttribute("data-background") || script.getAttribute("data-bg");
 
   const host = document.createElement("div");
   host.setAttribute("data-mateo-footer-widget", "");
@@ -22,7 +23,7 @@ const widgetScript = `(() => {
   const root = host.attachShadow({ mode: "open" });
 
   const isLight = theme === "light";
-  const background = isLight ? "#ffffff" : "rgba(0,0,0,0.85)";
+  const background = customBackground || (isLight ? "#ffffff" : "rgba(0,0,0,0.85)");
   const border = isLight ? "rgba(0,0,0,0.08)" : "rgba(255,255,255,0.1)";
   const textColor = isLight ? "rgba(0,0,0,0.65)" : "rgba(255,255,255,0.65)";
 

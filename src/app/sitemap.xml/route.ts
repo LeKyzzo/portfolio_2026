@@ -20,7 +20,7 @@ async function fetchRepoSlugs() {
 }
 
 export async function GET() {
-  const pages = ["/", "/profil", "/projets", "/plateformes", "/contact"];
+  const pages = ["/", "/profil", "/projets", "/plateformes", "/reutilisables", "/contact"];
   const repoSlugs = await fetchRepoSlugs();
 
   const urls = [...pages, ...repoSlugs.map((s) => `/projets/${s}`)];
